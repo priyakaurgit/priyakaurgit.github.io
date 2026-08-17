@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import SupportEmail from '../../components/SupportEmail.astro';
+import { MARKATT, formatDate } from '../../consts';
+
+const title = 'markAtt support';
+const description =
+  'Help and contact details for markAtt, an attendance and homework tracking app for teachers at a community Sunday school.';
+const updated = MARKATT.lastUpdated;
+---
+
+<Base title={title} description={description}>
+  <div class="prose">
+    <h1>markAtt support</h1>
+
+    <p class="meta">
+      Last updated <time datetime={updated}>{formatDate(updated)}</time>
+    </p>
+
+    <p class="lead">
+      markAtt is an attendance and homework tracking app for teachers at a
+      community Sunday school. Teachers use it to record who attended each
+      session and whether homework was completed.
+    </p>
+
+    <h2>Contact</h2>
+
+    <p>
+      For help with the app, email <SupportEmail />.
+    </p>
+
+    <p>
+      Emails are usually answered within a few business days. If your question
+      is about a class list, a student record, or a login, your school
+      administrator can normally sort it out faster than I can.
+    </p>
+
+    <h2>Common questions</h2>
+
+    <h3>How do I get my login?</h3>
+
+    <p>
+      Teacher accounts are created by your school administrator. Ask them to set
+      up an account for you, and they will register it against your email
+      address.
+    </p>
+
+    <h3>I have forgotten my password</h3>
+
+    <p>
+      Contact your school administrator. They can reset it for you. I cannot see
+      or recover your password — passwords are stored hashed and the app never
+      has access to the plain text.
+    </p>
+
+    <h3>A class or student is missing</h3>
+
+    <p>
+      Class lists and student enrolments are managed by the school, not from
+      inside the app. Contact your school administrator and they can add or
+      correct the enrolment for the current term.
+    </p>
+
+    <h2>Privacy</h2>
+
+    <p>
+      The <a href="/markatt/privacy/">markAtt privacy policy</a> sets out what the
+      app stores, where it is stored, and who can see it.
+    </p>
+  </div>
+</Base>

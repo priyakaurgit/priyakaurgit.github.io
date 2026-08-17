@@ -1,0 +1,22 @@
+---
+/**
+ * The markAtt support address.
+ *
+ * While the constant is still a placeholder this renders a highlighted marker
+ * instead of a link, so the site cannot ship a mailto: that goes nowhere.
+ * Once MARKATT.supportEmail is a real address it becomes a normal link on both
+ * the support and privacy pages at once.
+ */
+import { MARKATT, isPlaceholder } from '../consts';
+
+const email = MARKATT.supportEmail;
+const pending = isPlaceholder(email);
+---
+
+{
+  pending ? (
+    <span class="placeholder">{email}</span>
+  ) : (
+    <a href={`mailto:${email}`}>{email}</a>
+  )
+}
