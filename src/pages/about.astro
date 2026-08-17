@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'About';
+const description =
+  'Five years of Android development in Java, a career in QA engineering, and now building and shipping products of my own.';
+---
+
+<Base title={title} description={description}>
+  <div class="prose">
+    <h1>About</h1>
+
+    <p class="lead">
+      I'm Priya Kaur. I'm a QA Engineer based in Australia, and I build and ship
+      my own software.
+    </p>
+
+    <h2>Android, 2014–2019</h2>
+
+    <p>
+      I started out building Android applications in Java. For five years that
+      was the work: Android Studio, activities and fragments, layouts, and the
+      long tail of making an app behave the same way on hardware I had never
+      held. Shipping to real devices teaches you quickly that a feature working
+      on your machine is not the same as a feature working.
+    </p>
+
+    <h2>QA engineering</h2>
+
+    <p>
+      Then I moved into quality. People sometimes read that as a step away from
+      building. It isn't. Quality engineering is about verifying things properly
+      instead of assuming they work — writing the test that would catch the
+      failure rather than the one that confirms what you already believe.
+    </p>
+
+    <p>
+      Most of the job is being specific before anyone claims something is done.
+      What does working mean here? What state has to exist first? What happens
+      on the path nobody planned for? Those questions are unglamorous and they
+      are the difference between software that holds up and software that looks
+      finished.
+    </p>
+
+    <h2>Building again</h2>
+
+    <p>
+      Now I'm building products of my own, with AI assistance for the parts I
+      would otherwise have spent weeks getting up to speed on. The first is
+      markAtt, an attendance and homework tracking app for a community Sunday
+      school in Brisbane.
+    </p>
+
+    <p>
+      The QA background is the advantage here, not a detour. When writing code
+      stops being the slow part, verification becomes the bottleneck: knowing
+      what to check, how a thing fails, and what done actually means. That is
+      the part that doesn't get easier, and it's the part I have spent years on.
+    </p>
+  </div>
+</Base>

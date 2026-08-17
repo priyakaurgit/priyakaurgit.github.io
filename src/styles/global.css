@@ -418,6 +418,54 @@ hr {
   margin-top: var(--space-12);
 }
 
+/* ==========================================================================
+   Entries
+
+   A project or a piece of work. Separated by space and a hairline, never a
+   card.
+   ========================================================================== */
+
+.entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.entry__head > h2,
+.entry__head > h3 {
+  margin: 0;
+}
+
+.entry + .entry {
+  border-top: var(--hairline) solid var(--rule);
+  margin-top: var(--space-10);
+  padding-top: var(--space-10);
+}
+
+.entry > p + p {
+  margin-top: var(--space-4);
+}
+
+/* A short row of links in the utility face. */
+/* No margin reset here: .link-list is combined with .divide, which owns the
+   top margin. The base `ul { margin: 0 }` covers the default case. */
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.link-list a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+
 /* An unreplaced FILL IN value. Loud on purpose — it must not ship unnoticed. */
 .placeholder {
   font-family: var(--font-mono);

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Status from '../components/Status.astro';
+
+const title = 'Work';
+const description =
+  'Products and projects by Priya Kaur, including markAtt, an attendance and homework tracking app built for a community Sunday school in Brisbane.';
+---
+
+<Base title={title} description={description}>
+  <h1>Work</h1>
+
+  <p class="lead">This is where the products and projects I build live.</p>
+
+  <div class="divide">
+    <article class="entry">
+      <div class="entry__head">
+        <h2>markAtt</h2>
+        <Status state="in-pilot" />
+      </div>
+
+      <p>
+        markAtt is an attendance and homework tracking app for a community
+        Sunday school in Brisbane. Teachers open it at the start of a session,
+        mark who is present, and record whether homework was completed.
+      </p>
+
+      <p>
+        It replaced a Google Sheets workflow — shared tabs per class, edited on
+        phones, with no reliable way to tell who had changed what. The app gives
+        each teacher only their own class, and keeps one mark per student per
+        session against the date it was taken.
+      </p>
+
+      <p>
+        It is built with React Native and Expo on the front end, and Supabase
+        for the database and authentication. Access is enforced with row-level
+        security rather than in the client, so a teacher cannot read another
+        class's records even if the app is wrong.
+      </p>
+
+      <p>
+        <a href="/markatt/support/">markAtt support and contact</a>
+      </p>
+    </article>
+  </div>
+
+  <!--
+    Later: the full markAtt case study goes here, after the pilot term.
+    Cover the Google Sheets workflow it replaced, the data model, the
+    row-level security policies, and what the pilot actually surfaced.
+  -->
+</Base>

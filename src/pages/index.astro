@@ -1,11 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
 import Status from '../components/Status.astro';
-import { SITE } from '../consts';
+import { SITE, LINKS } from '../consts';
 ---
 
 <Base title={SITE.name} description={SITE.description}>
-  <h1>{SITE.name}</h1>
-  <p class="lead">Placeholder — home content lands with the main pages.</p>
-  <p><Status state="in-pilot" /></p>
+  <h1>Priya Kaur</h1>
+
+  <p class="lead">
+    I'm a QA Engineer who builds and ships her own software. Five years of
+    Android development, then a career in quality, and now products of my own.
+  </p>
+
+  <section class="divide">
+    <h2>Working on now</h2>
+
+    <div class="entry">
+      <div class="entry__head">
+        <h3>markAtt</h3>
+        <Status state="in-pilot" />
+      </div>
+
+      <p>
+        Attendance and homework tracking for a community Sunday school in
+        Brisbane. It is functionally complete and heading to TestFlight and
+        Google Play internal testing.
+      </p>
+
+      <p>
+        <a href="/work/">More about the work</a>
+      </p>
+    </div>
+  </section>
+
+  <ul class="link-list divide">
+    <li><a href={LINKS.github} rel="me noopener">GitHub</a></li>
+    <li><a href={LINKS.linkedin} rel="me noopener">LinkedIn</a></li>
+  </ul>
 </Base>

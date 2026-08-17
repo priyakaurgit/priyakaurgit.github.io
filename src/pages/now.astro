@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Status from '../components/Status.astro';
+import { NOW, formatDate } from '../consts';
+
+const title = 'Now';
+const description =
+  'What Priya Kaur is focused on at the moment: shipping markAtt to pilot users, building this site, and learning React Native and Supabase properly.';
+const updated = NOW.lastUpdated;
+---
+
+<Base title={title} description={description}>
+  <div class="prose">
+    <h1>Now</h1>
+
+    <p class="lead">
+      This page describes what I'm focused on at the moment. I update it a few
+      times a year.
+    </p>
+
+    <p>
+      <Status state="building" srLabel="Page status">
+        Last updated <time datetime={updated}>{formatDate(updated)}</time>
+      </Status>
+    </p>
+
+    <ul>
+      <li>
+        Shipping markAtt to pilot users at the Sunday school, and getting it
+        through TestFlight and Google Play internal testing.
+      </li>
+      <li>Building this site.</li>
+      <li>
+        Learning React Native and Supabase properly, rather than only as far as
+        markAtt needed.
+      </li>
+    </ul>
+
+    <p>
+      This is a <a href="https://nownownow.com/about" rel="noopener">now page</a>,
+      a convention started by Derek Sivers: one page on a personal site that says
+      what the person is actually doing at the moment, kept current.
+    </p>
+  </div>
+</Base>

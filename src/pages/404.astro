@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Page not found';
+const description = 'That page does not exist on thepriyakaur.com.';
+---
+
+<Base title={title} description={description}>
+  <p class="meta">Error 404</p>
+
+  <h1>Page not found</h1>
+
+  <p class="lead">
+    That page doesn't exist. It may have moved, or the link may be wrong.
+  </p>
+
+  <ul class="link-list divide">
+    <li><a href="/">Home</a></li>
+    <li><a href="/work/">Work</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+</Base>
