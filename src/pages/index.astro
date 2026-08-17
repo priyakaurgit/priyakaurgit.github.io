@@ -1,13 +1,11 @@
 ---
-// Placeholder — replaced in the design-system step.
+import Base from '../layouts/Base.astro';
+import Status from '../components/Status.astro';
+import { SITE } from '../consts';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Priya Kaur</title>
-  </head>
-  <body>
-    <h1>Priya Kaur</h1>
-  </body>
-</html>
+<Base title={SITE.name} description={SITE.description}>
+  <h1>{SITE.name}</h1>
+  <p class="lead">Placeholder — home content lands with the main pages.</p>
+  <p><Status state="in-pilot" /></p>
+</Base>

@@ -24,7 +24,7 @@ export default defineConfig({
       // Display: headings only.
       provider: fontProviders.fontsource(),
       name: 'Archivo',
-      cssVariable: '--font-display',
+      cssVariable: '--font-archivo',
       weights: [600, 700],
       styles: ['normal'],
       subsets: ['latin'],
@@ -34,7 +34,7 @@ export default defineConfig({
       // Body: paragraphs and long-form text.
       provider: fontProviders.fontsource(),
       name: 'Newsreader',
-      cssVariable: '--font-body',
+      cssVariable: '--font-newsreader',
       weights: [400, 600],
       styles: ['normal'],
       subsets: ['latin'],
@@ -44,7 +44,7 @@ export default defineConfig({
       // Utility: status labels, dates, tags, nav. Small sizes only.
       provider: fontProviders.fontsource(),
       name: 'IBM Plex Mono',
-      cssVariable: '--font-mono',
+      cssVariable: '--font-plex-mono',
       weights: [400, 500],
       styles: ['normal'],
       subsets: ['latin'],

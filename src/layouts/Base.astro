@@ -1,0 +1,107 @@
+---
+import { Font } from 'astro:assets';
+import { SITE, LINKS, NAV } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  /** Page title, without the site name. Home passes the bare name. */
+  title: string;
+  description: string;
+  /** Open Graph type. Articles set this to 'article'. */
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, ogType = 'website' } = Astro.props;
+
+// Astro.site is set in astro.config.mjs, so this is always defined.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
+
+/** Trailing slashes are normalised so /work and /work/ both match. */
+const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCurrent = (href: string) => here === href.replace(/\/+$/, '');
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f3f4f0" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <Font cssVariable="--font-archivo" preload />
+    <Font cssVariable="--font-newsreader" preload />
+    <Font cssVariable="--font-plex-mono" />
+  </head>
+
+  <body>
+    <div class="page">
+      <a class="skip-link" href="#main">Skip to content</a>
+
+      <header class="site-header">
+        <div class="shell site-header__inner">
+          <a class="site-header__home" href="/">{SITE.name}</a>
+          <nav class="site-nav" aria-label="Primary">
+            <ul>
+              {
+                NAV.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      aria-current={isCurrent(item.href) ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main" id="main">
+        <div class="shell">
+          <slot />
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="shell">
+          <ul class="site-footer__links">
+            <li>
+              <a href={LINKS.github} rel="me noopener">GitHub</a>
+            </li>
+            <li>
+              <a href={LINKS.linkedin} rel="me noopener">LinkedIn</a>
+            </li>
+          </ul>
+          <p class="site-footer__meta">&copy; {year} {SITE.name}</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

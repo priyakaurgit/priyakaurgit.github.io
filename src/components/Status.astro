@@ -1,0 +1,81 @@
+---
+/**
+ * A status label: a small square colour swatch and a monospace uppercase word.
+ *
+ * This is the one loud thing on the site. It states the true status of a
+ * piece of work — never decoration, and never a status that is not real.
+ *
+ * Default text is the state itself. Pass children to say something else in the
+ * same voice, e.g. a last-updated date on /now.
+ */
+export type StatusState = 'shipped' | 'in-pilot' | 'building' | 'planned';
+
+interface Props {
+  state: StatusState;
+  /** Accessible prefix, read before the label. */
+  srLabel?: string;
+  class?: string;
+}
+
+const { state, srLabel = 'Status', class: className } = Astro.props;
+const hasCustomText = Astro.slots.has('default');
+---
+
+<span class:list={['status', `status--${state}`, className]}>
+  <span class="status__swatch" aria-hidden="true"></span>
+  <span class="status__text">
+    <span class="status__sr">{srLabel}:</span>
+    {hasCustomText ? <slot /> : state}
+  </span>
+</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .status__swatch {
+    flex-shrink: 0;
+    width: 0.65em;
+    height: 0.65em;
+    background-color: var(--status-colour);
+    /* A hairline keeps the swatch legible against its own tint. */
+    box-shadow: inset 0 0 0 1px
+      color-mix(in srgb, var(--status-colour) 100%, black 12%);
+  }
+
+  .status__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .status--shipped,
+  .status--in-pilot {
+    --status-colour: var(--mark);
+  }
+
+  .status--building {
+    --status-colour: var(--pending);
+  }
+
+  .status--planned {
+    --status-colour: var(--ink-soft);
+  }
+</style>
