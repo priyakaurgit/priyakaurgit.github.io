@@ -9,9 +9,11 @@ interface Props {
   description: string;
   /** Open Graph type. Articles set this to 'article'. */
   ogType?: 'website' | 'article';
+  /** Keep the page out of search results. Used by /404. */
+  noindex?: boolean;
 }
 
-const { title, description, ogType = 'website' } = Astro.props;
+const { title, description, ogType = 'website', noindex = false } = Astro.props;
 
 // Astro.site is set in astro.config.mjs, so this is always defined.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -33,7 +35,15 @@ const year = new Date().getFullYear();
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {
+      /* A 404 is not a real address: it gets no canonical, and search engines
+         are told to leave it alone. */
+      noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <link rel="canonical" href={canonical} />
+      )
+    }
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />

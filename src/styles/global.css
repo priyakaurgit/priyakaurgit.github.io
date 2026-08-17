@@ -157,20 +157,25 @@ h3 {
   text-wrap: balance;
 }
 
+/* Headings own the space beneath them. Inside .prose the following element
+   also sets a top margin; adjacent margins collapse, so this never doubles up. */
 h1 {
   font-size: var(--text-3xl);
+  margin-bottom: var(--space-5);
 }
 
 h2 {
   font-size: var(--text-2xl);
   font-weight: 600;
   line-height: var(--leading-snug);
+  margin-bottom: var(--space-4);
 }
 
 h3 {
   font-size: var(--text-xl);
   font-weight: 600;
   line-height: var(--leading-snug);
+  margin-bottom: var(--space-3);
 }
 
 p {
@@ -377,17 +382,18 @@ hr {
   margin-top: var(--space-8);
 }
 
-.prose ul,
-.prose ol {
+/* Only unclassed lists. A list that carries a class — .link-list, and anything
+   added later — brings its own layout and must not inherit prose spacing. */
+.prose :is(ul, ol):not([class]) {
   max-width: var(--measure);
   padding-left: var(--space-5);
 }
 
-.prose li + li {
+.prose :is(ul, ol):not([class]) li + li {
   margin-top: var(--space-2);
 }
 
-.prose li::marker {
+.prose :is(ul, ol):not([class]) li::marker {
   color: var(--ink-soft);
 }
 
