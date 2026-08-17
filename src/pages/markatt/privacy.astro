@@ -1,4 +1,13 @@
 ---
+// REVIEW REQUIRED before app store submission.
+// This policy must match the App Store privacy labels and the Google Play
+// Data Safety form exactly. A mismatch is a common rejection reason.
+// Children's data is involved — have this reviewed by someone qualified
+// under the Australian Privacy Act, and confirm the consent arrangement
+// with the school.
+//
+// Kept in the frontmatter deliberately: frontmatter is build-time only, so
+// this note stays with the file without shipping in the page source.
 import Base from '../../layouts/Base.astro';
 import SupportEmail from '../../components/SupportEmail.astro';
 import { MARKATT, isPlaceholder, formatDate } from '../../consts';
@@ -11,14 +20,6 @@ const region = MARKATT.supabaseRegion;
 const regionPending = isPlaceholder(region);
 ---
 
-<!--
-  REVIEW REQUIRED before app store submission.
-  This policy must match the App Store privacy labels and the Google Play
-  Data Safety form exactly. A mismatch is a common rejection reason.
-  Children's data is involved — have this reviewed by someone qualified
-  under the Australian Privacy Act, and confirm the consent arrangement
-  with the school.
--->
 <Base title={title} description={description}>
   <div class="prose">
     <h1>markAtt privacy policy</h1>

@@ -35,8 +35,8 @@ export const NAV = [
  * `isPlaceholder()` is what the pages branch on — keep the FILL IN prefix.
  */
 export const MARKATT = {
-  supportEmail: 'FILL IN — support email address',
-  supabaseRegion: 'FILL IN — Supabase region',
+  supportEmail: 'priyakaur.au@gmail.com',
+  supabaseRegion: 'ap-southeast-2',
   /** Shown on /markatt/privacy and /markatt/support. */
   lastUpdated: '2026-08-17',
 } as const;
