@@ -296,6 +296,18 @@ hr {
   color: var(--mark);
 }
 
+/* The mark sits on the text baseline at roughly the cap height of the name.
+   Its cropped viewBox means the box is the glyph, so 0.75em lands within a
+   third of a pixel of Archivo's cap height and the left edge stays flush with
+   the shell's text edge. An inline-block replaced element takes its baseline
+   from its bottom edge, which is what puts it on the line. */
+.site-header__mark {
+  display: inline-block;
+  width: 0.625em; /* 15/18 of the height — the glyph's own ratio */
+  height: 0.75em;
+  margin-right: var(--space-2);
+}
+
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
