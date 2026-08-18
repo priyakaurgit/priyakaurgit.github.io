@@ -90,14 +90,23 @@ const year = new Date().getFullYear();
               /* The brand mark, cropped to the glyph itself: the standalone
                  asset in /public/brand carries padding and a paper ground for
                  favicon and avatar use, which would indent the mark away from
-                 the text edge here. Colours are tokens, not the asset's hex,
-                 so the mark follows a future dark theme like everything else.
+                 the text edge here.
+
+                 The solid mark, for the same reason as the favicon: at this
+                 size the green counter is 2.84:1 against the ink around it and
+                 closes up, while a knocked-out counter is the page colour at
+                 16.17:1. Leaving the counter as a hole rather than painting it
+                 paper is what makes that true on any background, so the mark
+                 still follows a future dark theme — as does the ink token.
+
                  aria-hidden because the name beside it already labels the
                  link. */
             }
             <svg class="site-header__mark" viewBox="4 3 15 18" aria-hidden="true">
-              <path fill="var(--ink)" d="M4 3 H19 V15 H9 V21 H4 Z"></path>
-              <path fill="var(--mark)" d="M9 12 L15 7 V12 Z"></path>
+              <path
+                fill="var(--ink)"
+                fill-rule="evenodd"
+                d="M4 3 H19 V15 H9 V21 H4 Z M9 12 L15 7 V12 Z"></path>
             </svg>{SITE.name}
           </a>
           <nav class="site-nav" aria-label="Primary">
