@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
 
 const title = 'About';
 const description =
-  'Five years of Android development in Java, a career in QA engineering, and now building and shipping products of my own.';
+  'More than ten years in software across development, testing and QA leadership in India and Australia, and the products and books Priya Kaur builds and writes herself.';
 ---
 
 <Base title={title} description={description}>
@@ -11,51 +12,116 @@ const description =
     <h1>About</h1>
 
     <p class="lead">
-      I'm Priya Kaur. I'm a QA Engineer based in Australia, and I build and ship
-      my own software.
+      I've worked in software for more than ten years, in India and now in
+      Australia. I've been a developer, a test analyst, an automation engineer,
+      and a QA lead. I'm based in Brisbane.
     </p>
 
-    <h2>Android, 2014–2019</h2>
+    <h2>What I've handled</h2>
 
     <p>
-      I started out building Android applications in Java. For five years that
-      was the work: Android Studio, activities and fragments, layouts, and the
-      long tail of making an app behave the same way on hardware I had never
-      held. Shipping to real devices teaches you quickly that a feature working
-      on your machine is not the same as a feature working.
+      Across those roles I've owned test strategy and planning, built automation
+      frameworks from scratch, run API testing inside CI/CD pipelines, and led
+      UAT with business stakeholders. I've been the only QA on projects where
+      that meant deciding what "ready to release" actually meant, and standing
+      behind it.
     </p>
 
-    <h2>QA engineering</h2>
+    <dl class="capabilities">
+      <dt class="eyebrow">Testing</dt>
+      <dd>
+        Test strategy and planning, functional, regression, smoke, UAT,
+        exploratory and risk-based testing
+      </dd>
+
+      <dt class="eyebrow">Automation</dt>
+      <dd>
+        Playwright with TypeScript, Page Object Model, Postman API suites in
+        CI/CD
+      </dd>
+
+      <dt class="eyebrow">Tools</dt>
+      <dd>Jira, Azure DevOps, Confluence, Microsoft Dynamics 365</dd>
+
+      <dt class="eyebrow">Building</dt>
+      <dd>React Native, Expo, Supabase, TypeScript, Java</dd>
+    </dl>
+
+    <p>ISTQB certified.</p>
+
+    <h2>What I build</h2>
 
     <p>
-      Then I moved into quality. People sometimes read that as a step away from
-      building. It isn't. Quality engineering is about verifying things properly
-      instead of assuming they work — writing the test that would catch the
-      failure rather than the one that confirms what you already believe.
+      Testing taught me what breaks. Building my own products is where I find
+      out whether I can avoid it.
     </p>
 
     <p>
-      Most of the job is being specific before anyone claims something is done.
-      What does working mean here? What state has to exist first? What happens
-      on the path nobody planned for? Those questions are unglamorous and they
-      are the difference between software that holds up and software that looks
-      finished.
-    </p>
-
-    <h2>Building again</h2>
-
-    <p>
-      Now I'm building products of my own, with AI assistance for the parts I
-      would otherwise have spent weeks getting up to speed on. The first is
-      markAtt, an attendance and homework tracking app for a community Sunday
-      school in Brisbane.
+      markAtt is the first — an attendance and homework app for a community
+      Sunday school in Brisbane, replacing a Google Sheets workflow. Real users,
+      real data, and all the decisions that come with that.
     </p>
 
     <p>
-      The QA background is the advantage here, not a detour. When writing code
-      stops being the slow part, verification becomes the bottleneck: knowing
-      what to check, how a thing fails, and what done actually means. That is
-      the part that doesn't get easier, and it's the part I have spent years on.
+      I write as well as build. My first children's activity book is on Amazon,
+      three more in the series are in progress, and I'm slowly working towards
+      something longer.
+    </p>
+
+    <h2>How I work</h2>
+
+    <p>
+      I like understanding why something works, not just that it does. I ask
+      questions early rather than guessing, and I'd rather raise a problem while
+      it's cheap to fix. Most of the useful work I've done came from talking to
+      the people who'd actually use the thing.
+    </p>
+
+    <p>
+      That curiosity is probably what connects the parts. In testing, the
+      interesting bugs are the ones nobody thought to look for. In writing for
+      children, you can't hide behind complicated words. Both reward the same
+      habit.
+    </p>
+
+    <h2>Contact</h2>
+
+    <p>
+      The best way to reach me is email — <a
+        href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a
+      >.
     </p>
   </div>
 </Base>
+
+<style>
+  /* A capabilities list: the category in the utility face, the specifics in
+     body text. Two aligned columns where there is room, stacked lines where
+     there isn't — never a grid of badges. */
+  .capabilities {
+    max-width: var(--measure);
+  }
+
+  .capabilities dt {
+    margin-bottom: var(--space-1);
+  }
+
+  .capabilities dd + dt {
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 32rem) {
+    .capabilities {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      align-items: baseline;
+      gap: var(--space-3) var(--space-5);
+    }
+
+    /* Row gap owns the spacing once the two columns exist. */
+    .capabilities dt,
+    .capabilities dd + dt {
+      margin: 0;
+    }
+  }
+</style>
