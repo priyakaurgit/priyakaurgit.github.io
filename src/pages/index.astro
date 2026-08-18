@@ -5,36 +5,58 @@ import { SITE, LINKS } from '../consts';
 ---
 
 <Base title={SITE.name} description={SITE.description}>
-  <h1>Priya Kaur</h1>
+  <div class="prose">
+    <h1>Priya Kaur</h1>
 
-  <p class="lead">
-    I'm a QA Engineer who builds and ships her own software. Five years of
-    Android development, then a career in quality, and now products of my own.
-  </p>
+    <p class="lead">
+      I'm Priya Kaur. More than ten years in software — I started out building
+      Android applications, moved into testing, and now work as a QA Engineer
+      leading quality on large projects.
+    </p>
 
-  <section class="divide">
-    <h2>Working on now</h2>
+    <p>
+      Outside that, I build my own products and I write. So far that's meant an
+      attendance app now in use at a Sunday school in Brisbane, and a children's
+      activity book series on Amazon. More of both are in progress.
+    </p>
 
-    <div class="entry">
-      <div class="entry__head">
-        <h3>markAtt</h3>
-        <Status state="in-pilot" />
+    <p>This site is where all of it lives.</p>
+
+    <section class="divide">
+      <h2>Working on now</h2>
+
+      <div class="entry">
+        <div class="entry__head">
+          <h3>markAtt</h3>
+          <Status state="in-pilot" />
+        </div>
+
+        <p>
+          Attendance and homework tracking for a community Sunday school in
+          Brisbane, in pilot with real teachers and students.
+        </p>
+
+        <p><a href="/work/">More about markAtt</a></p>
       </div>
 
-      <p>
-        Attendance and homework tracking for a community Sunday school in
-        Brisbane. It is functionally complete and heading to TestFlight and
-        Google Play internal testing.
-      </p>
+      <div class="entry">
+        <div class="entry__head">
+          <h3>Happy Little Coloring Adventures</h3>
+          <Status state="building" />
+        </div>
 
-      <p>
-        <a href="/work/">More about the work</a>
-      </p>
-    </div>
-  </section>
+        <p>
+          Colouring and word-tracing activity books for children aged 3 to 6,
+          self-published on Amazon.
+        </p>
 
-  <ul class="link-list divide">
-    <li><a href={LINKS.github} rel="me noopener">GitHub</a></li>
-    <li><a href={LINKS.linkedin} rel="me noopener">LinkedIn</a></li>
-  </ul>
+        <p><a href="/work/">More about the books</a></p>
+      </div>
+    </section>
+
+    <ul class="link-list divide">
+      <li><a href={LINKS.github} rel="me noopener">GitHub</a></li>
+      <li><a href={LINKS.linkedin} rel="me noopener">LinkedIn</a></li>
+    </ul>
+  </div>
 </Base>
