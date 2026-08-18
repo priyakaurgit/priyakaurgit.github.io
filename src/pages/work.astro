@@ -1,16 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
 import Status from '../components/Status.astro';
+import { LINKS } from '../consts';
 
 const title = 'Work';
 const description =
-  'Products and projects by Priya Kaur, including markAtt, an attendance and homework tracking app built for a community Sunday school in Brisbane.';
+  'Work by Priya Kaur: markAtt, an attendance and homework tracking app for a community Sunday school in Brisbane, and Happy Little Coloring Adventures, an activity book series for children on Amazon.';
 ---
 
 <Base title={title} description={description}>
   <h1>Work</h1>
 
-  <p class="lead">This is where the products and projects I build live.</p>
+  <p class="lead">This is what I have built and published so far.</p>
 
   <div class="divide">
     <article class="entry">
@@ -20,34 +21,53 @@ const description =
       </div>
 
       <p>
-        markAtt is an attendance and homework tracking app for a community
-        Sunday school in Brisbane. Teachers open it at the start of a session,
-        mark who is present, and record whether homework was completed.
+        Attendance and homework tracking for a community Sunday school in
+        Brisbane, replacing a Google Sheets process. In use with real teachers
+        and real students.
       </p>
 
       <p>
-        It replaced a Google Sheets workflow — shared tabs per class, edited on
-        phones, with no reliable way to tell who had changed what. The app gives
-        each teacher only their own class, and keeps one mark per student per
-        session against the date it was taken.
+        The interesting part wasn't the screens. It was a seven-table Postgres
+        schema with row-level security on every table, then testing that
+        security the way I'd test a client's: stale sessions, cross-teacher
+        access attempts, offline edits that had to revert cleanly when the
+        server rejected them. Attendance uses NULL for "not marked yet" rather
+        than defaulting to absent, because a teacher who hasn't opened the roll
+        is not the same as a student who didn't show up.
       </p>
 
-      <p>
-        It is built with React Native and Expo on the front end, and Supabase
-        for the database and authentication. Access is enforced with row-level
-        security rather than in the client, so a teacher cannot read another
-        class's records even if the app is wrong.
-      </p>
+      <p>React Native, Expo, Supabase, TypeScript. Currently in pilot.</p>
 
       <p>
         <a href="/markatt/support/">markAtt support and contact</a>
       </p>
+
+      <!--
+        Later: the full markAtt case study goes here, after the pilot term.
+        Cover the Google Sheets workflow it replaced, the data model, the
+        row-level security policies, and what the pilot actually surfaced.
+      -->
+    </article>
+
+    <article class="entry">
+      <div class="entry__head">
+        <h2>Happy Little Coloring Adventures</h2>
+        <Status state="building" />
+      </div>
+
+      <p>
+        Colouring and word-tracing activity books for children aged 3 to 6,
+        self-published through Amazon KDP. Each page pairs a picture to colour
+        with a word to trace, so children build early vocabulary and handwriting
+        alongside fine motor skills.
+      </p>
+
+      <p>
+        <a href={LINKS.iLoveSpring} target="_blank" rel="noopener"
+          >I Love Spring</a
+        > is the first, with 18 spring-themed pages. Three more in the series are
+        in progress.
+      </p>
     </article>
   </div>
-
-  <!--
-    Later: the full markAtt case study goes here, after the pilot term.
-    Cover the Google Sheets workflow it replaced, the data model, the
-    row-level security policies, and what the pilot actually surfaced.
-  -->
 </Base>
