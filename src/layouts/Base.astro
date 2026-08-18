@@ -17,6 +17,12 @@ const { title, description, ogType = 'website', noindex = false } = Astro.props;
 
 // Astro.site is set in astro.config.mjs, so this is always defined.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+/* Social scrapers do not resolve relative paths, so the card is an absolute
+   URL built from the same `site` value as the canonical. One static card for
+   every page: the site is small enough that a per-page image would be noise. */
+const ogImage = new URL('/og.png', Astro.site).href;
+const ogImageAlt = 'Priya Kaur — QA Engineer. I build and write my own things.';
 const fullTitle = title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
 
 /** Trailing slashes are normalised so /work and /work/ both match. */
@@ -56,11 +62,17 @@ const year = new Date().getFullYear();
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <Font cssVariable="--font-archivo" preload />
     <Font cssVariable="--font-newsreader" preload />
