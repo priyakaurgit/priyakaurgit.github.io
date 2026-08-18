@@ -9,12 +9,22 @@ export const SITE = {
   locale: 'en_AU',
   /** Used as the default <meta name="description"> and og:description. */
   description:
-    'Priya Kaur is a QA Engineer in Australia who builds and ships her own software.',
+    'Priya Kaur is a QA Engineer in Brisbane with more than ten years in software. She builds her own products and writes activity books for children.',
+  /**
+   * General contact, used on /about.
+   *
+   * markAtt has its own address — see MARKATT.supportEmail. Keeping the two
+   * separate means support mail stays sorted from everything else, and neither
+   * address goes in the footer: one clear place per audience is enough.
+   */
+  contactEmail: 'hello@thepriyakaur.com',
 } as const;
 
 export const LINKS = {
   github: 'https://github.com/priyakaurgit',
   linkedin: 'https://linkedin.com/in/priya-kaur-profile',
+  /** Book one, on Amazon AU. */
+  iLoveSpring: 'https://www.amazon.com.au/dp/B0HCSZ8JYW',
 } as const;
 
 export const NAV = [
@@ -27,22 +37,22 @@ export const NAV = [
 /**
  * markAtt details.
  *
- * `supportEmail` and `supabaseRegion` are placeholders. Both are rendered as
- * highlighted "needs filling in" markers rather than as real content, so the
- * site cannot quietly ship a dead mailto: link or an invented data-storage
- * claim. Replace both values below before submitting the app.
+ * `supportEmail` and `supabaseRegion` were placeholders until the app was
+ * ready; both are now real. The `isPlaceholder()` guard below stays in place,
+ * because the cost of keeping it is nothing and the cost of shipping a dead
+ * mailto: link or an invented data-storage claim is not.
  *
  * `isPlaceholder()` is what the pages branch on — keep the FILL IN prefix.
  */
 export const MARKATT = {
-  supportEmail: 'priyakaur.au@gmail.com',
+  supportEmail: 'support@thepriyakaur.com',
   supabaseRegion: 'ap-southeast-2',
   /** Shown on /markatt/privacy and /markatt/support. */
-  lastUpdated: '2026-08-17',
+  lastUpdated: '2026-08-18',
 } as const;
 
 export const NOW = {
-  lastUpdated: '2026-08-17',
+  lastUpdated: '2026-08-18',
 } as const;
 
 /** True while a constant is still an unreplaced placeholder. */
