@@ -48,11 +48,11 @@ export const MARKATT = {
   supportEmail: 'support@thepriyakaur.com',
   supabaseRegion: 'ap-southeast-2',
   /** Shown on /markatt/privacy and /markatt/support. */
-  lastUpdated: '2026-08-18',
+  lastUpdated: '2026-08-31',
 } as const;
 
 export const NOW = {
-  lastUpdated: '2026-08-31',
+  lastUpdated: '2026-08-18',
 } as const;
 
 /** True while a constant is still an unreplaced placeholder. */
