@@ -52,7 +52,7 @@ export const MARKATT = {
 } as const;
 
 export const NOW = {
-  lastUpdated: '2026-08-18',
+  lastUpdated: '2026-08-31',
 } as const;
 
 /** True while a constant is still an unreplaced placeholder. */
