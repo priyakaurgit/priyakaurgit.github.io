@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import { MARKATT, isPlaceholder } from '../../consts';
 
 /* The screenshots live in src/assets rather than public/ so that astro:assets
    can process them: the sources are 1284×2778 App Store shots, and served raw
@@ -21,6 +22,9 @@ const description =
 const SHOT_WIDTH = 260;
 
 /* Alt text describes the screen, not its position in the row. */
+/* No badge until there is somewhere for it to point. */
+const hasAppStoreUrl = !isPlaceholder(MARKATT.appStoreUrl);
+
 const shots = [
   {
     src: shot1,
@@ -54,6 +58,27 @@ const shots = [
       week. Built for volunteer teachers marking a roll on their phone on a
       Sunday morning.
     </p>
+
+    <!-- App Store badge. Renders when MARKATT.appStoreUrl in src/consts.ts is
+         a real URL; until then this comment is the whole of it, because a dead
+         badge on the page the App Store listing points at is worse than none.
+         The artwork must be Apple's own official asset, dropped in at
+         public/markatt/app-store-badge.svg — see Apple's marketing guidelines.
+         Nothing else needs editing to turn it on. -->
+    {
+      hasAppStoreUrl && (
+        <p class="app-store">
+          <a href={MARKATT.appStoreUrl} target="_blank" rel="noopener">
+            <img
+              src="/markatt/app-store-badge.svg"
+              alt="Download markAtt on the App Store"
+              width="120"
+              height="40"
+            />
+          </a>
+        </p>
+      )
+    }
 
     {
       /* The screenshot row is a scroll container in its own right. It bleeds
@@ -148,6 +173,19 @@ const shots = [
 </Base>
 
 <style>
+  /* Apple's badge is supplied artwork and carries its own wordmark, so it gets
+     no underline and no border. Height is fixed and the width follows the
+     asset's own ratio, so the official SVG is used exactly as issued. */
+  .app-store a {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .app-store img {
+    width: auto;
+    height: 40px;
+  }
+
   /* Negative margins equal to the shell's own padding, so the row starts and
      ends flush with the page edge on a phone and with the shell's border box
      on a desktop. The shell is capped at --content-width and centred, so this

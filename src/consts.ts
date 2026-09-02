@@ -47,6 +47,15 @@ export const NAV = [
 export const MARKATT = {
   supportEmail: 'support@thepriyakaur.com',
   supabaseRegion: 'ap-southeast-2',
+  /**
+   * The App Store listing, linked from the badge on /markatt.
+   *
+   * Until this is real the page renders no badge at all — not a disabled one,
+   * not a placeholder. A dead link on the page the App Store listing itself
+   * points at is worse than no link. Replacing this value is the only change
+   * needed: the badge appears on its own.
+   */
+  appStoreUrl: 'FILL IN — App Store URL',
   /** Shown on /markatt/privacy and /markatt/support. */
   lastUpdated: '2026-08-31',
 } as const;
