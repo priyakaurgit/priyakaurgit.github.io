@@ -1,0 +1,183 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+
+/* The screenshots live in src/assets rather than public/ so that astro:assets
+   can process them: the sources are 1284×2778 App Store shots, and served raw
+   they would be roughly 2 MB for a row displayed 260px wide. Imported, they
+   come out as WebP at the two densities actually needed. Anything in public/
+   is copied byte-for-byte and cannot be optimised, which is why they moved. */
+import shot1 from '../../assets/markatt/shot-1.png';
+import shot2 from '../../assets/markatt/shot-2.png';
+import shot3 from '../../assets/markatt/shot-3.png';
+import shot4 from '../../assets/markatt/shot-4.png';
+import shot5 from '../../assets/markatt/shot-5.png';
+
+const title = 'markAtt';
+const description =
+  'Attendance and homework tracking for community schools.';
+
+/** Displayed width of one screenshot. Height follows the source aspect. */
+const SHOT_WIDTH = 260;
+
+/* Alt text describes the screen, not its position in the row. */
+const shots = [
+  {
+    src: shot1,
+    alt: 'The roll for a class of ten students, each row carrying a present, an absent and a homework button, with a week selector above and Save draft and Submit buttons below.',
+  },
+  {
+    src: shot2,
+    alt: "An administrator's view of one Sunday, listing four classes with their teacher, their present and absent counts, and whether the roll is still a draft or already submitted.",
+  },
+  {
+    src: shot3,
+    alt: 'The whole school roll of students in one alphabetical list, each showing the class they are in and their student number.',
+  },
+  {
+    src: shot4,
+    alt: 'A single student record showing two guardians, each with a phone number and an email address, marked as mother and father with one set as the primary contact.',
+  },
+  {
+    src: shot5,
+    alt: 'The import and export screen, with a class filter and buttons to export students, archived students or attendance as CSV, and to choose a file to import.',
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <div class="prose">
+    <h1>markAtt</h1>
+
+    <p class="lead">
+      Attendance and homework tracking for community schools that meet once a
+      week. Built for volunteer teachers marking a roll on their phone on a
+      Sunday morning.
+    </p>
+
+    {
+      /* The screenshot row is a scroll container in its own right. It bleeds
+         out to the shell's padding edge and no further, so the page itself
+         never scrolls sideways at any width. Keyboard users get the container
+         as a focus stop, which is what makes an overflow region operable
+         without a line of JavaScript. */
+    }
+    <div
+      class="shots"
+      role="group"
+      aria-label="markAtt screenshots"
+      tabindex="0"
+    >
+      <ul class="shots__row">
+        {
+          shots.map((shot) => (
+            <li>
+              <Image
+                src={shot.src}
+                alt={shot.alt}
+                width={SHOT_WIDTH}
+                densities={[1, 2]}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <h2>What it does</h2>
+
+    <h3>For teachers</h3>
+
+    <p>
+      Open the app, see your class, mark each student present or absent with one
+      tap. Homework is recorded the same way. The roll takes about a minute,
+      then it is submitted and locked so nothing changes by accident.
+    </p>
+
+    <h3>For administrators</h3>
+
+    <p>
+      See which classes have marked their roll each week. Add and edit students
+      with guardian contacts, move a student between classes on a chosen date,
+      import and export the student list, and export attendance for the term.
+      Set up terms and roll them over into the next one.
+    </p>
+
+    <h2>How it is built</h2>
+
+    <p>
+      React Native and Expo on the front, Supabase on the back — Postgres, Auth,
+      row-level security, Edge Functions and scheduled jobs.
+    </p>
+
+    <p>
+      Row-level security is the only security boundary. A teacher can read and
+      write the roll for their own class and nothing else, enforced in the
+      database rather than in the app, so a stale screen or a modified client
+      cannot get around it. That was tested the way I would test a client's
+      system: stale sessions, cross-teacher access attempts, and offline edits
+      that had to revert cleanly when the server rejected them.
+    </p>
+
+    <p>
+      Attendance uses NULL for "not marked yet" rather than defaulting to
+      absent, because a teacher who has not opened the roll is not the same as a
+      student who did not show up. Student records are deleted automatically two
+      years after a student leaves.
+    </p>
+
+    <h2>Privacy and access</h2>
+
+    <p>
+      markAtt holds student records for a school and nothing else. No
+      advertising, no analytics, no tracking. Data is stored in Australia.
+    </p>
+
+    <p>
+      Accounts are created by the school administrator. There is no public
+      sign-up.
+    </p>
+
+    <ul class="link-list">
+      <li><a href="/markatt/privacy/">Privacy policy</a></li>
+      <li><a href="/markatt/support/">Support</a></li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  /* Negative margins equal to the shell's own padding, so the row starts and
+     ends flush with the page edge on a phone and with the shell's border box
+     on a desktop. The shell is capped at --content-width and centred, so this
+     can never be wider than the viewport. */
+  .shots {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    margin-inline: calc(var(--page-pad) * -1);
+    /* The block padding is room for the focus ring, which sits 3px outside. */
+    padding: var(--space-1) var(--page-pad);
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--page-pad);
+  }
+
+  .shots__row {
+    display: flex;
+    /* Without this the flex line shrinks to the container and the items
+       squash instead of overflowing. */
+    width: max-content;
+    gap: var(--space-4);
+  }
+
+  .shots__row > li {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* Hairline and 2px, matching every other edge on the site. No shadow. */
+  .shots img {
+    border: var(--hairline) solid var(--rule);
+    border-radius: var(--radius);
+  }
+</style>
